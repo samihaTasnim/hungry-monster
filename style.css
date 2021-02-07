@@ -10,3 +10,7 @@ a {
 .card {
   cursor: pointer;
 }
+
+li {
+  list-style-type: none;
+}

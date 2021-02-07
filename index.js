@@ -10,13 +10,13 @@ const showfoodData = () => {
         let foodElement = data[key];
 
         if (foodElement === null) {
-          document.getElementById("error-message").style.display = "block";
-          return;
+            document.getElementById("error-message").style.display = "block";
+            return;
         }
-
+        document.getElementById("error-message").style.display = "none"
         foodElement.forEach(food => {
           console.log(food);
-          
+
           const parentContainer = document.getElementById("card-container")
           let childDivCol = document.createElement('div')
           childDivCol.className = "col"
@@ -24,9 +24,9 @@ const showfoodData = () => {
 
           let childDivCard = document.createElement('div')
           childDivCard.className = "card bg-light"
-          // childDivCard.addEventListener("click", showInfo());
           childDivCol.appendChild(childDivCard)
 
+          let mealId = food.idMeal
           let img = document.createElement('img')
           img.className = "card-img-top"
           img.src = food.strMealThumb;
@@ -35,45 +35,42 @@ const showfoodData = () => {
           h4.innerText = food.strMeal
           childDivCard.append(img, h4);
 
-               let showInfo = () => {
-                 let newDiv = document.createElement('div')
-                 console.log("i am clicked");
-                 document.getElementById("show-indivisual").appendChild(newDiv)
-                 newDiv = `   
-          <div class="card bg-light">
-            <img src="${food.strMealThumb}" class="card-img-top">
-            <h4 class="text-center card-body">${food.strMeal}</h4>
-            <ul>
-              <li>${food.strIngredient1}</li>
-              <li>${food.strIngredient2}</li>
-            </ul>
-          </div>
-        `
+          childDivCard.addEventListener("click", function () {
+            document.getElementById('show-indivisual').innerHTML = ""
+
+            fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealId}`)
+              .then(res => res.json())
+              .then(data => {
+                console.log(data);
+                let newDiv = document.createElement('div')
+                console.log("i am clicked");
+                document.getElementById("show-indivisual").appendChild(newDiv)
+                let Ingredients = [food.strIngredient1, food.strIngredient2, food.strIngredient3, food.strIngredient4, food.strIngredient5, food.strIngredient6, food.strIngredient7, food.strIngredient8, food.strIngredient9, food.strIngredient10]
+
+                newDiv.innerHTML = `   
+                  <div class="p-3">
+                       <img src='${food.strMealThumb}' class="card-img-top" id="image">
+                       <h4>${food.strMeal}</h4>
+                       <ul id="ul">
+                         <strong>Ingredients:</strong>
+                       </ul>
+                  </div>
+                    `
+                document.getElementById("image").className = "h-25 w-25"
+                Ingredients.forEach(element => {
+                  if (element === "") {
+                    return;
+                  }
+                  let li = document.createElement('li')
+                  li.innerText = element;
+                  document.getElementById("ul").appendChild(li)
+                });
+              })
+
           }
-        childDivCard.addEventListener("click", showInfo());
-          // document.querySelectorAll('.card').forEach(item => {
-          //   item.addEventListener('click', function (e) {
-          //     e.target.id = "item1"
-          //     let parent = document.getElementById("item1").parentElement; 
-          //      console.log(parent);
 
-            //   let infoUl = document.createElement('ul')
-            //   infoUl.innerText = "Ingredients"
+          );
 
-            //   let li = document.createElement('li')
-            //   li.innerText = item.strIngredient1
-            //   let li2 = document.createElement('li')
-            //   li2.innerText = item.strIngredient2;
-            //   let li3 = document.createElement('li')
-            //   li3.innerText = item.strIngredient3;
-            //   let li4 = document.createElement('li')
-            //   li4.innerText = item.strIngredient4;
-            //   infoUl.append(li, li2, li3, li4);
-            //   item.appendChild(infoUl)
-            //  })
-          // })
-
-          
         })
       }
     })
