@@ -15,7 +15,6 @@ const showfoodData = () => {
         }
         document.getElementById("error-message").style.display = "none"
         foodElement.forEach(food => {
-          console.log(food);
 
           const parentContainer = document.getElementById("card-container")
           let childDivCol = document.createElement('div')
@@ -41,7 +40,6 @@ const showfoodData = () => {
             fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealId}`)
               .then(res => res.json())
               .then(data => {
-                console.log(data);
                 let newDiv = document.createElement('div')
                 console.log("i am clicked");
                 document.getElementById("show-indivisual").appendChild(newDiv)
