@@ -23,16 +23,16 @@
         <nav>
           <ul class="nav justify-content-end">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Active</a>
+              <a class="nav-link active" aria-current="page" href="#">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
+              <a class="nav-link" href="#">About</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
+              <a class="nav-link" href="#">Recipies</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+              <a class="nav-link" href="#" tabindex="-1" aria-disabled="true">Blog</a>
             </li>
           </ul>
         </nav>
@@ -52,10 +52,11 @@
 
   <!-- cards -->
   <div class="container">
-    <div class="row">
+    <div class="row" id="foodInfoDiv">
       <h3 id="error-message" class="text-center m-5">Please try a different input to search</h3>
+      <div id="show-indivisual"></div>
       <div class="row row-cols-1 row-cols-md-4 g-4" id="card-container">
-
+        
         <!-- <div class="col">
           <div class="card bg-light">
             <img src="" class="card-img-top">

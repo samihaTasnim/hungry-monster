@@ -1,6 +1,3 @@
-body {
-  font-family: 'Ubuntu', sans-serif;
-}
 
 a {
   color: black;
@@ -8,4 +5,8 @@ a {
 
 #error-message {
   display: none;
+}
+
+.card {
+  cursor: pointer;
 }
