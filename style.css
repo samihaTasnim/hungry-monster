@@ -5,3 +5,7 @@ body {
 a {
   color: black;
 }
+
+#error-message {
+  display: none;
+}
